@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* For Dropdowns */
+.PopoverContent {
+  width: var(--radix-popover-trigger-width);
+  max-height: var(--radix-popover-content-available-height);
+}
+
+@layer base {
+  .max-width {
+    @apply max-w-[1180px] mx-auto;
+  }
+  .container {
+    @apply lg:!px-8 md:!px-6 !px-4;
+  }
+}
+
+@layer components {
+  .Label {
+    @apply !text-white !bg-secondary !z-20 !px-1 !text-xs !-top-2 !left-2;
+  }
+}
+
+.gridImage {
+  background: linear-gradient(0deg, #333 0, rgba(51, 51, 51, 0) 50%);
+  background-size: 100% 110%;
+  background-position: 0 0;
+}
+
+.MediaBoxImage:after {
+  content: "";
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, #333 0, #333 40%, rgba(51, 51, 51, 0) 100%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.footerGridItem {
+  flex: 0 1 calc(15.5% - 20px);
+  max-width: calc(15.5% - 20px);
+}
+
+.footerGridItemSpan2 {
+  flex: 0 1 calc(30.5% - 20px);
+  max-width: calc(30.5% - 20px);
+}
+
+@media only screen and (max-width: 1024px) {
+  .footerGridItem {
+    flex: 0 1 calc(33.33% - 25px) !important;
+    max-width: 33.33% !important;
+  }
+
+  .footerGridItemSpan2 {
+    flex: 0 1 calc(33.33% - 25px) !important;
+    max-width: 33.33% !important;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 500px) {
+  .footerGridItem {
+    max-width: 48% !important;
+    flex: 0 1 calc(48.33% - 25px) !important;
+  }
+
+  .footerGridItemSpan2 {
+    order: 5;
+    max-width: 100% !important;
+    flex: 0 1 calc(100% - 25px) !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .footerGridItem {
+    flex: 0 1 100% !important;
+    max-width: 100% !important;
+  }
+
+  .footerGridItemSpan2 {
+    flex: 0 1 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+.map-animation {
+  animation: 7s infinite map-rotation;
+}
+
+@keyframes map-rotation {
+  0% {
+    transform: rotateY(0);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.HideScrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.HideScrollBar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.CustomScrollBar::-webkit-scrollbar {
+  width: 3px;
+}
+.CustomScrollBar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #48a427;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hide Google Tooltips */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-icon {
+  display: none !important;
+}
+.skiptranslate {
+  display: none !important;
+}
+.goog-logo-link {
+  display: none !important;
+}
+.goog-te-gadget {
+  color: transparent !important;
+}
+.goog-tooltip {
+  display: none !important;
+}
+.goog-tooltip:hover {
+  display: none !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.translated-ltr {
+  margin-top: 0 !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+font {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

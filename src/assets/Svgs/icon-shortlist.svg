@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
+  <path d="M18,18V17a1.74,1.74,0,0,0-.88-1.41A3.82,3.82,0,0,0,15,15H9a3.82,3.82,0,0,0-2.12.59A1.74,1.74,0,0,0,6,17v1" transform="translate(-5.5 -5.5)" style="fill: none;stroke: #fff;stroke-linecap: round;stroke-linejoin: round"/>
+  <path d="M12,12A3,3,0,1,0,9,9,3,3,0,0,0,12,12Z" transform="translate(-5.5 -5.5)" style="fill: none;stroke: #fff;stroke-linecap: round;stroke-linejoin: round"/>
+</svg>

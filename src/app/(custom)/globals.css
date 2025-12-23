@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.CustomScrollBar::-webkit-scrollbar {
+  width: 4px;
+}
+.CustomScrollBar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #274685;
+}
+
+.serif {
+  font-family: sans-serif;
+}
