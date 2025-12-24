@@ -11,7 +11,17 @@ import { CreateSlug } from "@/lib/helper/CreateSlug";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const Header = () => {
+interface HeaderProps {
+  logoUrl?: string;
+  companyName?: string;
+  phone?: string;
+  whatsapp?: string;
+}
+
+const Header = ({ logoUrl, companyName, phone, whatsapp }: HeaderProps) => {
+  // Use props with fallback to env variables
+  const phoneNumber = phone || process.env.NEXT_PUBLIC_PHONE_NUMBER || "";
+  const whatsappNumber = whatsapp || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
   const [show, setShow] = useState(true);
   const [Menu, setMenu] = useState(false);
 
@@ -47,12 +57,20 @@ const Header = () => {
         {/* Logo / left Section*/}
         <div className="flex-shrink-0 relative z-30">
           <Link prefetch={false} href={"/"}>
-            <Image
-              className="max-xl:w-[140px] max-md:w-[100px]"
-              width={160}
-              src={mpd_logo}
-              alt="kingdom_logo"
-            />
+            {logoUrl ? (
+              <img
+                className="max-xl:w-[140px] max-md:w-[100px] w-[160px] h-auto"
+                src={logoUrl}
+                alt={companyName || "Company Logo"}
+              />
+            ) : (
+              <Image
+                className="max-xl:w-[140px] max-md:w-[100px]"
+                width={160}
+                src={mpd_logo}
+                alt={companyName || "Company Logo"}
+              />
+            )}
           </Link>
         </div>
         {/* Right Section */}
@@ -61,19 +79,13 @@ const Header = () => {
           <div className="flex items-center justify-end md:gap-6 gap-4">
             <Link
               target="_blank"
-              href={
-                "tel:" +
-                process.env.NEXT_PUBLIC_PHONE_NUMBER?.replaceAll(" ", "")
-              }
+              href={"tel:" + phoneNumber.replaceAll(" ", "")}
               className="text-sm max-md:hidden mt-0.5"
             >
-              {process.env.NEXT_PUBLIC_PHONE_NUMBER}
+              {phoneNumber}
             </Link>
             <Link
-              href={
-                "https://wa.me/" +
-                process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replaceAll(" ", "")
-              }
+              href={"https://wa.me/" + whatsappNumber.replaceAll(" ", "")}
               target="_blank"
               className="relative z-30"
             >

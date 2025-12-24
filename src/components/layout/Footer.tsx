@@ -6,15 +6,31 @@ import google from "@/assets/Svgs/google.svg";
 import github from "@/assets/Svgs/github-mark.svg";
 import Metropolitan_Group from "@/assets/Svgs/Metropolitan_Group_2022_Certification_Badge.svg";
 import ribbon from "@/assets/Svgs/ribbon-arabia_2023.svg";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import SelectCurrenciesFooter from "@/shared/SelectCurrenciesFooter";
 import { GetCookies } from "@/lib/actions/Cookies";
 import { SubmitContactForm } from "@/lib/actions/FormAction";
 import { SubmitButton } from "@/shared/SubmitButton";
+import { getSiteSettings } from "@/lib/helper/getSiteSettings";
 
 const Footer = async () => {
   const Area = await GetCookies({ name: "area" });
   const Price = await GetCookies({ name: "price" });
+  const settings = await getSiteSettings();
+
+  // Use settings with fallbacks
+  const companyName = settings?.company_name || "Kingdom Capital Real Estate LLC";
+  const address = settings?.address || "2803, API Trio Tower, Sheikh Zayed Road, Dubai, United Arab Emirates";
+  const whatsappNumber = settings?.whatsapp || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+  const copyrightText = settings?.copyright_text || `© ${new Date().getFullYear()}. All rights reserved ${companyName}`;
+  const instagramUrl = settings?.instagram || "https://www.instagram.com/thekingdom.realestate";
+  const facebookUrl = settings?.facebook || "https://www.facebook.com/kingdomcapitalrealestate";
+  const linkedinUrl = settings?.linkedin || "https://www.linkedin.com/company/kingdom-capital-real-estate/";
+  const youtubeUrl = settings?.youtube;
+  const twitterUrl = settings?.twitter;
+
+  // Generate footer items with dynamic whatsapp
+  const FooterItems = getFooterItems(whatsappNumber);
 
   return (
     <footer className="bg-[#f9f9f9] mt-8 pt-16 pb-8">
@@ -54,7 +70,7 @@ const Footer = async () => {
         <div className="flex max-lg:flex-wrap items-start justify-start lg:justify-between lg:gap-5 gap-6">
           <div className="footerGridItem">
             <h5 className="font-bold text-sm">
-              Kingdom Capital Real Estate LLC
+              {companyName}
             </h5>
             <ul className="flex flex-col lg:gap-1.5 gap-2 mt-4">
               {FooterItems.Metropolitan.map((items, i: number) => (
@@ -132,10 +148,7 @@ const Footer = async () => {
                             </div>
                         </div> */}
             <div className="w-full mt-12 md:max-w-[250px] text-sm text-black/80 max-md:text-center">
-              2803, API Trio Tower, Sheikh Zayed Road,
-              <br className="xs:hidden" />
-              Dubai, United Arab Emirates
-              <br />
+              {address}
             </div>
           </div>
         </div>
@@ -147,7 +160,7 @@ const Footer = async () => {
           <div className="flex md:flex-row flex-col md:items-end items-center sm:gap-5 gap-3">
             <div className="flex items-center gap-5">
               <div className=" md:max-w-[250px] text-xs text-black/80 max-md:text-center">
-                © 2024. All rights reserved Kingdom Capital Real Estate
+                {copyrightText}
               </div>
               <Link
                 className="underline text-xs text-black/50 decoration-black/30 hover:decoration-secondary hover:text-secondary transition-all duration-300"
@@ -165,36 +178,43 @@ const Footer = async () => {
           </div>
           <div className="flex flex-col gap-3 max-md:order-1">
             <div className="flex flex-row items-center gap-3 max-md:order-1">
-              <a
-                target="_blank"
-                href="https://www.instagram.com/thekingdom.realestate?igsh=emVyaTVpZGFweWc5"
-              >
-                <Instagram className="stroke-secondary hover:stroke-black/50 transition-all duration-300" />
-              </a>
-              <a
-                target="_blank"
-                href="https://www.facebook.com/kingdomcapitalrealestate"
-              >
-                <Facebook
-                  size={25}
-                  className="fill-secondary stroke-none hover:fill-black/50 transition-all duration-300"
-                />
-              </a>
-              <a
-                target="_blank"
-                href="https://www.linkedin.com/company/kingdom-capital-real-estate/"
-              >
-                <Linkedin
-                  size={25}
-                  className="fill-secondary stroke-none hover:fill-black/50 transition-all duration-300"
-                />
-              </a>
-              {/* <a target="_blank" href="">
-              <Twitter
-                size={25}
-                className="fill-secondary stroke-none hover:fill-black/50 transition-all duration-300"
-              />
-            </a> */}
+              {instagramUrl && (
+                <a target="_blank" href={instagramUrl}>
+                  <Instagram className="stroke-secondary hover:stroke-black/50 transition-all duration-300" />
+                </a>
+              )}
+              {facebookUrl && (
+                <a target="_blank" href={facebookUrl}>
+                  <Facebook
+                    size={25}
+                    className="fill-secondary stroke-none hover:fill-black/50 transition-all duration-300"
+                  />
+                </a>
+              )}
+              {linkedinUrl && (
+                <a target="_blank" href={linkedinUrl}>
+                  <Linkedin
+                    size={25}
+                    className="fill-secondary stroke-none hover:fill-black/50 transition-all duration-300"
+                  />
+                </a>
+              )}
+              {youtubeUrl && (
+                <a target="_blank" href={youtubeUrl}>
+                  <Youtube
+                    size={25}
+                    className="stroke-secondary hover:stroke-black/50 transition-all duration-300"
+                  />
+                </a>
+              )}
+              {twitterUrl && (
+                <a target="_blank" href={twitterUrl}>
+                  <Twitter
+                    size={25}
+                    className="fill-secondary stroke-none hover:fill-black/50 transition-all duration-300"
+                  />
+                </a>
+              )}
             </div>
           </div>
           {/* <div className='flex gap-3 items-center'>
@@ -225,7 +245,7 @@ const Footer = async () => {
   );
 };
 
-const FooterItems = {
+const getFooterItems = (whatsappNum: string) => ({
   Metropolitan: [
     {
       title: "Buy",
@@ -241,30 +261,12 @@ const FooterItems = {
     },
     {
       title: "Contact Us",
-      Link:
-        "https://wa.me/" +
-        process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replaceAll(" ", ""),
+      Link: "https://wa.me/" + whatsappNum.replaceAll(" ", ""),
     },
     {
       title: "Blogs",
       Link: "/blogs",
     },
-    // {
-    //     title: "about Us",
-    //     Link: "/about"
-    // },
-    // {
-    //     title: "Careers",
-    //     Link: "/careers"
-    // },
-    // {
-    //     title: "Media",
-    //     Link: "/media"
-    // },
-    // {
-    //     title: "Blog",
-    //     Link: "/blog"
-    // },
   ],
   // Services: [
   //     {
@@ -346,6 +348,6 @@ const FooterItems = {
       Link: "/projects",
     },
   ],
-};
+});
 
 export default Footer;

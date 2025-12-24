@@ -190,17 +190,17 @@ const ContactForm = async () => {
   });
 
   const Agent_Image =
-    Data.sell_agent?.image &&
+    Data?.sell_agent?.image &&
     urlForImage(Data.sell_agent.image.asset._ref).url();
 
   return (
     <ContactFormExpert
       Agent={{
-        name: Data.sell_agent?.name,
+        name: Data?.sell_agent?.name || null,
         image: Agent_Image ? Agent_Image : null,
-        phone: Data.sell_agent?.phone,
+        phone: Data?.sell_agent?.phone || null,
       }}
-      description={Data.sell_agent?.about}
+      description={Data?.sell_agent?.about || null}
       Form={{
         Title: "LIST YOUR PROPERTY",
         buttonText: "GET A FREE CONSULTATION",

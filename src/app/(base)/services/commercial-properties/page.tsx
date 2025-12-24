@@ -266,18 +266,18 @@ const ContactForm = async () => {
   });
 
   const Agent_Image =
-    Data.commercial_agent?.image &&
+    Data?.commercial_agent?.image &&
     urlForImage(Data.commercial_agent.image.asset._ref).url();
 
   return (
     <ContactFormExpert
       Agent={{
-        name: Data.commercial_agent?.name,
+        name: Data?.commercial_agent?.name || null,
         image: Agent_Image ? Agent_Image : null,
-        phone: Data.commercial_agent?.phone,
+        phone: Data?.commercial_agent?.phone || null,
       }}
       sub_title="Our Expert on Buying Offices in Dubai"
-      description={Data.commercial_agent?.about}
+      description={Data?.commercial_agent?.about || null}
       Form={{
         Title: "Send a request",
         buttonText: "GET A FREE CONSULTATION",
