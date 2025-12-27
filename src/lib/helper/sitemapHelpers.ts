@@ -2,7 +2,7 @@ import { SanityFetch } from "@/lib/SanityFetch";
 import { MetadataRoute } from "next";
 import { CreateSlug } from "./CreateSlug";
 
-const BaseURL = process.env.NEXT_PUBLIC_BASE_URL;
+const BaseURL = process.env.NEXT_PUBLIC_BASE_URL || "https://realestatewebsite-liart.vercel.app";
 
 const BaseSiteMap = async ({
   fetchSlug,

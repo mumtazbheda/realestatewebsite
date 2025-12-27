@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Kingdom Capital - Leading Real Estate Company in Dubai",
   description: "Kingdom Capital Real Estate, a leading real estate company in Dubai. We offer smart property solutions to elevate your lifestyle",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://realestatewebsite-liart.vercel.app"),
 };
 
 export default function RootLayout({

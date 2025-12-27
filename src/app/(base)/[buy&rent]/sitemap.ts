@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { AgentSiteMap } from "@/lib/helper/sitemapHelpers";
 
-const BaseURL = process.env.NEXT_PUBLIC_BASE_URL;
+const BaseURL = process.env.NEXT_PUBLIC_BASE_URL || "https://realestatewebsite-liart.vercel.app";
 
 export default async function sitemap(a:any): Promise<MetadataRoute.Sitemap> {
   console.log(a)

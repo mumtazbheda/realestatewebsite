@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BaseURL = process.env.NEXT_PUBLIC_BASE_URL;
+const BaseURL = process.env.NEXT_PUBLIC_BASE_URL || "https://realestatewebsite-liart.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {

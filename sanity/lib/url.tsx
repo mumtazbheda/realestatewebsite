@@ -1,6 +1,8 @@
 import { CreateSlug } from "@/lib/helper/CreateSlug";
 import { client } from "./client";
 
+const BaseURL = process.env.NEXT_PUBLIC_BASE_URL || "https://realestatewebsite-liart.vercel.app";
+
 export const ResolveURL = async (doc: any) => {
   const docType = doc?._type;
   const param =
@@ -19,29 +21,29 @@ export const ResolveURL = async (doc: any) => {
         : CreateSlug(area?.title);
 
     return new URL(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/areas/${areaParam}/${param}`
+      `${BaseURL}/areas/${areaParam}/${param}`
     );
   }
 
   // For Property Documents
   if (docType === "property") {
     return new URL(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${doc.avaibility}/${param}`
+      `${BaseURL}/${doc.avaibility}/${param}`
     );
   }
 
   // For mass_media Documents
   if (docType === "mass_media") {
-    return new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/mass-media/${param}`);
+    return new URL(`${BaseURL}/mass-media/${param}`);
   }
 
   // For media Documents
   if (docType === "media") {
-    return new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/${docType}/${param}`);
+    return new URL(`${BaseURL}/${docType}/${param}`);
   }
 
   // For Rest of the Documents
   return new URL(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/${docType + "s"}/${param}`
+    `${BaseURL}/${docType + "s"}/${param}`
   );
 };
