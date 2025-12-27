@@ -63,6 +63,18 @@ const PropertyBox = async ({
                   : `${BuyORrent}/` + CreateSlug(title)
               }
             >
+              {propertyimage && propertyimage.length > 0 && (
+                <Image
+                  unoptimized
+                  fill
+                  className="!h-[200px] !w-full !relative object-cover"
+                  src={propertyimage[0]}
+                  alt="Image1"
+                />
+              )}
+            </Link>
+          ) : (
+            propertyimage && propertyimage.length > 0 && (
               <Image
                 unoptimized
                 fill
@@ -70,15 +82,7 @@ const PropertyBox = async ({
                 src={propertyimage[0]}
                 alt="Image1"
               />
-            </Link>
-          ) : (
-            <Image
-              unoptimized
-              fill
-              className="!h-[200px] !w-full !relative object-cover"
-              src={propertyimage[0]}
-              alt="Image1"
-            />
+            )
           )}
           <div className="text-xs font-medium flex items-center gap-1 absolute top-0 left-0 p-2">
             <button className="py-1 px-3 bg-secondary hover:bg-white hover:text-secondary text-white rounded-lg uppercase transition-all duration-300">
