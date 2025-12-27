@@ -30,7 +30,7 @@ const Reviews = async () => {
             alignNavButtons='max-md:top-[55%]'
             title='Reviews About Our Company' For='Reviews'
             Slides={Data.map((items: any, i: number) => {
-                const Source_Logo = items.source_logo && urlForImage(items.source_logo.asset._ref).url()
+                const Source_Logo = items.source_logo && items.source_logo.asset && urlForImage(items.source_logo.asset._ref).url()
                 return (
                     <ReviewBox
                         review={items.review}

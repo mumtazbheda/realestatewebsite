@@ -45,10 +45,11 @@ const BuyingProperties = async () => {
         Slides={Data.map((items: any, i: number) => {
           const PropertyImages =
             items.image &&
-            items.image.map((item: any) => urlForImage(item.asset._ref).url());
+            items.image.filter((item: any) => item?.asset?._ref).map((item: any) => urlForImage(item.asset._ref).url());
           const AgentImage =
             items.agent &&
             items.agent.image &&
+            items.agent.image.asset &&
             urlForImage(items.agent.image.asset._ref).url();
 
           return (
