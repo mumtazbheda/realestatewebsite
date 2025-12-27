@@ -30,14 +30,14 @@ const Agents = async () => {
         BreakPoints={[4, 3, 2, 1]}
         Slides={Data.map((items: any, i: number) => {
           const AgentImage =
-            items.image && urlForImage(items.image.asset._ref).url();
+            items.image && items.image.asset && urlForImage(items.image.asset._ref).url();
           return (
             <AgentsBox
               key={i}
               AgentImage={AgentImage}
               name={items.name}
               languages={items.language}
-              Phone={items.phone.replaceAll(" ", "") ?? ""}
+              Phone={items.phone ? items.phone.replaceAll(" ", "") : ""}
               slug={items?.slug?.current ?? ""}
             />
           );

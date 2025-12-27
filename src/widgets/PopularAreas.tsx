@@ -48,15 +48,12 @@ const PopularAreas = async () => {
             }
             className="cursor-pointer relative md:min-h-[257px] sm:min-h-[280px] max-sm:!h-[180px] md:col-span-1 rounded-lg overflow-hidden"
           >
-            {items.cover_image && (
+            {items.cover_image && items.cover_image.asset && (
               <Image
                 unoptimized
                 fill
                 className="w-full h-full object-cover"
-                src={
-                  items.cover_image &&
-                  urlForImage(items.cover_image.asset._ref).url()
-                }
+                src={urlForImage(items.cover_image.asset._ref).url()}
                 alt="Image1"
               />
             )}

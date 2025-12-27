@@ -36,7 +36,7 @@ const OffPlan = async () => {
         Slides={
           Data.map((items: any, i: number) => {
             const offPlanimage =
-              items.cover_image &&
+              items.cover_image && items.cover_image.asset &&
               urlForImage(items.cover_image.asset._ref).url();
             return (
               <ProjectBox
@@ -49,7 +49,7 @@ const OffPlan = async () => {
                 title={items.title}
                 project_Type={items.project_type}
                 comming_soon={items.coming_soon}
-                LinkSlug={items.slug.current}
+                LinkSlug={items.slug?.current ?? ""}
               />
             );
           })

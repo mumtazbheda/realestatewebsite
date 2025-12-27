@@ -54,7 +54,7 @@ const BuyingProperties = async () => {
           return (
             <PropertyBox
               key={i}
-              slug={items.slug.current}
+              slug={items.slug?.current ?? ""}
               BuyORrent={items.avaibility}
               propertyimage={PropertyImages}
               Price={items.price}
